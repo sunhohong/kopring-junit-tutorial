@@ -17,9 +17,22 @@ This tutorial project is based on following series of Youtube videos:
 * Spring Web 2.5.6
 * Spring Boot DevTools 2.5.6
 
-### Getting Started
+## Getting Started
 * Create a new project with Spring Initializr (https://start.spring.io/)
   ![Spring Initializr](readme_resources/spring_initializr.png "Spring Initializr")
+
+### The model
+**Bank**
+* Kotlin provides getter and setter methods by default, but we can make getter and setter if it necessary
+* Using `val` to make it read-only.
+* Kotlin's data class doesn’t need toString(), equals(), hashCode() cause those functions are auto generated
+  ```kotlin
+    data class Bank(
+      val accountNumber: String,
+      val trust: Double,
+      val transactionFee: Int
+    )
+  ```
 
 
 ### Test
@@ -27,6 +40,9 @@ This tutorial project is based on following series of Youtube videos:
 * Run `./gradlew test` to run all tests
 #### with IDE
 * Run test on IDE menu `Run > Run 'All Tests'`
+
+### IDE Settings
+#### Live Template
 
 ### Tips
 * If the project doesn't build with Java version problem, try to change the version from project structure settings. (find under file menu or CMD + ;)
