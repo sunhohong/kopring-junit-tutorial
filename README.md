@@ -36,6 +36,19 @@ This tutorial project is based on following series of Youtube videos:
   
 **Data Source**
 
+### Service layer
+* Create a service layer to handle business logic.
+* Service layer could handle complex logics but in this case it just connects to the data source and controller layer.
+* `BankService` interface
+  ```kotlin
+    interface BankService {
+      fun getBanks(): Collection<Bank>
+      fun getBank(accountNumber: String): Bank
+      fun addBank(bank: Bank): Bank
+      fun updateBank(bank: Bank): Bank
+      fun deleteBank(accountNumber: String)
+    }
+  ```
 
 ### Test
 #### without IDE
