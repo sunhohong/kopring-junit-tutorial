@@ -33,6 +33,8 @@ This tutorial project is based on following series of Youtube videos:
       val transactionFee: Int
     )
   ```
+  
+**Data Source**
 
 
 ### Test
@@ -43,6 +45,19 @@ This tutorial project is based on following series of Youtube videos:
 
 ### IDE Settings
 #### Live Template
+**Test**
+```Kotlin
+@Test
+fun `should $DESCRIPTION$`() {
+    // given
+    $GIVEN$
+    // when
+    $WHEN$
+    // then
+    $THEN$
+}
+    
+```
 
 ### Tips
 * If the project doesn't build with Java version problem, try to change the version from project structure settings. (find under file menu or CMD + ;)
