@@ -152,3 +152,16 @@ inner class $CLASS_NAME$ {
     * `mutableListOf` is mutable list, so it can be changed directly.
     * If you want to use immutable list on this case, you should return new list with added or removed item.
       > From [Effective Kotlin](http://www.yes24.com/Product/Goods/106225986)
+
+## Tutorial 10 - Patch endpoint
+
+### What's new?
+
+- [x] Add Patch endpoint to `BankController`.
+- [x] Add test for Patch endpoint to `BankControllerTest`.
+
+### What's in the tutorial
+
+* Nothing special. Just add patch endpoint and test.
+* Refactor assert object contents statements in `BankControllerTest` to use `ObjectMapper` was in this tutorial. not in
+  the tutorial 9.
