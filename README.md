@@ -133,3 +133,22 @@ inner class $CLASS_NAME$ {
 * `@Nested` annotation and `inner class` are used to group tests.
 * Add live template for nested test. See [Live Template](#live-template) section.
 * Refactor `/api/bank` url to `baseUrl` constant in `BankControllerTest`
+
+## Tutorial 9 - Post endpoint
+
+### What's new?
+
+- [x] Add POST endpoint to `BankController`.
+- [x] Add test for POST endpoint to `BankControllerTest`.
+- [x] Add `ObjectMapper` bean to `BankControllerTest` to convert `Bank` object to JSON string.
+- [x] Add `IllegalArgumentException` handler to `BankController` to handle request with existing account number.
+
+### What's in the tutorial
+
+* Refactor `mockMvc` member variable to `@Autowired` primary constructor in `BankControllerTest`.
+* Refactor assert object contents statements in `BankControllerTest` to use `ObjectMapper`.
+* Change mock banks list to `mutableListOf` to add new bank.
+    * (Kotlin basic) In Kotlin, `listOf` is immutable list, so it can't be changed.
+    * `mutableListOf` is mutable list, so it can be changed directly.
+    * If you want to use immutable list on this case, you should return new list with added or removed item.
+      > From [Effective Kotlin](http://www.yes24.com/Product/Goods/106225986)
