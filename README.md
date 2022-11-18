@@ -165,3 +165,15 @@ inner class $CLASS_NAME$ {
 * Nothing special. Just add patch endpoint and test.
 * Refactor assert object contents statements in `BankControllerTest` to use `ObjectMapper` was in this tutorial. not in
   the tutorial 9.
+
+## Tutorial 11 - DELETE endpoint
+
+### What's new?
+
+- [x] Add Delete endpoint to `BankController`.
+- [x] Add test for Delete endpoint to `BankControllerTest`.
+
+### What's in the tutorial
+
+* Nothing special. Just add delete endpoint and test.
+* [Kotlin] `Unit` is a return type same as `void` in Java.
