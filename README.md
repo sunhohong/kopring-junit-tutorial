@@ -59,6 +59,8 @@ This tutorial project is based on following series of Youtube videos:
 
 ### Controller layer (Web layer)
 
+* Controller using `@RestController` annotation to make it a REST controller.
+
 ### Test
 
 #### without IDE
@@ -88,6 +90,17 @@ fun `should $DESCRIPTION$`() {
 
 ```
 
+**Nested test**
+
+```Kotlin
+@Nested
+@DisplayName("$DESCRIPTION$")
+@TestInstance(Lifecycle.PER_CLASS)
+inner class $CLASS_NAME$ {
+    $CONTENT$
+}
+```
+
 ### Tips
 
 * If the project doesn't build with Java version problem, try to change the version from project structure settings. (
@@ -96,3 +109,27 @@ fun `should $DESCRIPTION$`() {
 * If the project doesn't build with Gradle version problem, try to change the JDK path in .zshrc (or .bashrc) file.
 * Set up [Code style](https://ddolcat.tistory.com/526) and [Save action](https://devroach.tistory.com/73) in IDE
   settings.
+
+# Tutorial Summary
+
+## Tutorial 8 - GET Single Bank
+
+### What's new?
+
+- [x] Add `getBank()` method to BankController
+- [x] Add test for `getBank()` method to BankControllerTest
+- [x] Add negative case test for `getBank()` method to BankControllerTest
+- [x] Add Exception handler to BankController for handling `NoSuchElementException` in controller layer
+
+### What's in the tutorial
+
+* `@GetMapping` annotation with path variable to handle dynamic path variable
+* `@PathVariable` annotation to get the path variable from the request URL
+  ```Kotlin
+    @GetMapping("/{accountNumber}")
+    fun getBank(@PathVariable accountNumber: String): Bank {
+  ```
+* Refactor tests in `BankControllerTest` to group tests by `@Nested` annotation
+* `@Nested` annotation and `inner class` are used to group tests.
+* Add live template for nested test. See [Live Template](#live-template) section.
+* Refactor `/api/bank` url to `baseUrl` constant in `BankControllerTest`
