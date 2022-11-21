@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.web.servlet.*
 
 @SpringBootTest
@@ -20,6 +21,44 @@ internal class BankControllerTest @Autowired constructor(
 ) {
 
     val baseUrl = "/api/banks"
+
+    @Nested
+    @DisplayName("DELETE /api/banks/{accountNumber}")
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    inner class DeleteExistingBank {
+
+        @Test
+        @DirtiesContext
+        fun `should delete the bank with the given account number`() {
+            // given
+            val accountNumber = 1234
+
+            // when/then
+            mockMvc.delete("$baseUrl/$accountNumber")
+                .andDo { print() }
+                .andExpect {
+                    status { isNoContent() }
+                }
+
+            mockMvc.get("$baseUrl/$accountNumber")
+                .andExpect {
+                    status { isNotFound() }
+                }
+        }
+
+        @Test
+        fun `should return NOT FOUND if no bank with given account number exists`() {
+            // given
+            val accountNumber = "does_not_exist"
+
+            // when/then
+            mockMvc.delete("$baseUrl/$accountNumber")
+                .andDo { print() }
+                .andExpect {
+                    status { isNotFound() }
+                }
+        }
+    }
 
     @Nested
     @DisplayName("GET /api/banks")
@@ -188,40 +227,4 @@ internal class BankControllerTest @Autowired constructor(
         }
     }
 
-    @Nested
-    @DisplayName("DELETE /api/banks/{accountNumber}")
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    inner class DeleteExistingBank {
-
-        @Test
-        fun `should delete the bank with the given account number`() {
-            // given
-            val accountNumber = 1234
-
-            // when/then
-            mockMvc.delete("$baseUrl/$accountNumber")
-                .andDo { print() }
-                .andExpect {
-                    status { isNoContent() }
-                }
-
-            mockMvc.get("$baseUrl/$accountNumber")
-                .andExpect {
-                    status { isNotFound() }
-                }
-        }
-
-        @Test
-        fun `should return NOT FOUND if no bank with given account number exists`() {
-            // given
-            val accountNumber = "does_not_exist"
-
-            // when/then
-            mockMvc.delete("$baseUrl/$accountNumber")
-                .andDo { print() }
-                .andExpect {
-                    status { isNotFound() }
-                }
-        }
-    }
 }
