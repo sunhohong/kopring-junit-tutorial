@@ -195,4 +195,16 @@ inner class $CLASS_NAME$ {
 * :white_check_mark: **Timely** - with (or even before!) production code
 
 * `@DirtiesContext` annotation is used to reset the context after each test. But it decreases the performance of tests.
- 
+
+## Tutorial 13 - REST APIs with RestTemplate & Dependency Injection
+
+### What's new?
+
+-[x] Add `NetworkDataSource` class.
+
+### What's in the tutorial
+
+* How to use DI to select specific implementation of interface if there are multiple implementations.
+* Disclaimer : Currently this tutorial is not working because the endpoint in the tutorial is not available anymore.
+
+
