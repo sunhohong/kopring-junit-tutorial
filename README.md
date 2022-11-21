@@ -177,3 +177,22 @@ inner class $CLASS_NAME$ {
 
 * Nothing special. Just add delete endpoint and test.
 * [Kotlin] `Unit` is a return type same as `void` in Java.
+
+## Tutorial 12 - Testing best practices
+
+### What's new?
+
+* [x] Refactor test using `@DirtiesContext` fit to "Isolated" principle of F.I.R.S.T. principles.
+
+### What's in the tutorial
+
+**First Principles for Automated Tests**
+
+* :white_check_mark: **Fast** - fast feedback loop, run often
+* :white_check_mark: **Isolated** - independent, arbitrary order.
+* :white_check_mark: **Repeatable** - same result each time,not flacky
+* :white_check_mark: **Self-validating** - actual vs. expected
+* :white_check_mark: **Timely** - with (or even before!) production code
+
+* `@DirtiesContext` annotation is used to reset the context after each test. But it decreases the performance of tests.
+ 
