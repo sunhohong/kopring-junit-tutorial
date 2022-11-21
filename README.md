@@ -109,6 +109,8 @@ inner class $CLASS_NAME$ {
 * If the project doesn't build with Gradle version problem, try to change the JDK path in .zshrc (or .bashrc) file.
 * Set up [Code style](https://ddolcat.tistory.com/526) and [Save action](https://devroach.tistory.com/73) in IDE
   settings.
+* If `gradlew bootBuildImage` shows `Connection to the Docker daemon at 'localhost' failed with error` error, check
+  Docker is running on local machine.
 
 # Tutorial Summary
 
@@ -200,11 +202,30 @@ inner class $CLASS_NAME$ {
 
 ### What's new?
 
--[x] Add `NetworkDataSource` class.
+- [x] Add `NetworkDataSource` class.
 
 ### What's in the tutorial
 
 * How to use DI to select specific implementation of interface if there are multiple implementations.
 * Disclaimer : Currently this tutorial is not working because the endpoint in the tutorial is not available anymore.
 
+## Tutorial 14 - Gradle for building Docker images and Boot JARs
 
+### What's new?
+
+- [x] Refactor `BankControllerTest` to fit changes in tutorial 13.
+- [x] Create a Jar file with `bootJar` task.
+- [x] Create a Docker image with `bootBuildImage` task.
+
+### What's in the tutorial
+
+* Gradle is a build tool for Java, Kotlin and maybe other languages.
+* Gradle also used to automation I think it's like `rake` in ROR of this case.
+    * Default Gradle tasks include `build`, `clean`, `test`, `assemble`, `jar`, `bootJar`, `bootRun`, `bootBuildImage`
+      , `docker` and many more.
+* `gradlew bootRun` command is used to run the application in terminal directly.
+* `gradlew bootJar` makes a jar file in `build/libs` directory. It can be run with `java -jar` command.
+* There are three different ways to run the application without IDE.
+    1. Run the application with `gradlew bootRun` command.
+    2. Run the application with `java -jar` command.
+    3. Run the application with Docker image.

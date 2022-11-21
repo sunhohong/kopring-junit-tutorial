@@ -72,7 +72,7 @@ internal class BankControllerTest @Autowired constructor(
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$[0].accountNumber") {
+                    jsonPath("$[0].account_number") {
                         value("1234")
                     }
                 }
@@ -97,7 +97,7 @@ internal class BankControllerTest @Autowired constructor(
                     jsonPath("$.trust") {
                         value("3.14")
                     }
-                    jsonPath("$.transactionFee") {
+                    jsonPath("$.default_transaction_fee") {
                         value("17")
                     }
                 }
