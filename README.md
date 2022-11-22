@@ -1,6 +1,6 @@
 # Spring Boot with Kotlin & JUnit 5 tutorial
 
-Author : Sunho Hong (https://github.com/sunhohong)
+Project created by : Sunho Hong (https://github.com/sunhohong)
 > note : This is a recap of the tutorial
 
 ### Reference
