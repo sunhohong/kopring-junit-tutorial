@@ -9,7 +9,7 @@ This tutorial project is based on following series of Youtube videos:
 
 * [Spring Boot with Kotlin & JUnit 5 - Tutorials](https://www.youtube.com/playlist?list=PL6gx4Cwl9DGDPsneZWaOFg0H2wsundyGr)
 
-### Prerequisites
+## Prerequisites
 
 * JDK 17
 * IntelliJ IDEA
@@ -61,19 +61,19 @@ This tutorial project is based on following series of Youtube videos:
 
 * Controller using `@RestController` annotation to make it a REST controller.
 
-### Test
+## Test
 
-#### without IDE
+### without IDE
 
 * Run `./gradlew test` to run all tests
 
-#### with IDE
+### with IDE
 
 * Run test on IDE menu `Run > Run 'All Tests'`
 
-### IDE Settings
+## IDE Settings
 
-#### Live Template
+### Live Template
 
 **Test**
 
@@ -101,7 +101,7 @@ inner class $CLASS_NAME$ {
 }
 ```
 
-### Tips
+## Tips
 
 * If the project doesn't build with Java version problem, try to change the version from project structure settings. (
   find under file menu or CMD + ;)
@@ -113,6 +113,122 @@ inner class $CLASS_NAME$ {
   Docker is running on local machine.
 
 # Tutorial Summary
+
+## Tutorial 2 - Hello World
+
+### What's new?
+
+- [x] Add the `HelloWorldController`
+- [x] Update `README`
+- [x] Add `readme_resources` directory for README file
+
+## Tutorial 3 - Project Structure
+
+### What's new?
+
+### What's in the tutorial
+
+* Dependencies, plugins and version/env descriptions are in `build.gradle.kts` file.
+* Project settings are in `settings.gradle.kts`
+* Build and test the project using `gradlew build` command without IDE
+* Server port can be changed by `application.properties` file
+  ```
+  server.port=9000
+  ```
+
+## Tutorial 4 - Data Layer
+
+### What's new?
+
+- [x] The Bank model
+- [x] Refactor the Bank model
+    - Move attributes definition to Primary constructor
+    - Using Kotlin data class
+
+### What's in the tutorial
+
+* Kotlin provides getter and setter methods by default, but we can make getter and setter if it necessary.
+* Primary constructor can be placed just right after the class definition like params.
+  ```Kotlin
+  data class Bank(
+    val accountNumber: String,
+    val trust: Double,
+    val transactionFee: Int
+  )
+  ```
+* Kotlin data class doesn’t need toString(), equals(), hashCode() cause those functions are auto generated
+
+## Tutorial 5 - Data Source
+
+### What's new?
+
+- [x] Add BankDataSource interface
+- [x] Add MockBankDataSource class
+- [x] Add MockBankDataSourceTest
+
+### What's in the tutorial
+
+* `@Repository` annotation notifies functionality of the class to Spring
+    * This class is responsible for retrieving data, storing data and those kind of functionalities.
+      ```Kotlin
+      @Repository
+      class MockBankDataSource : BankDataSource
+      ```
+
+### Tips
+
+* CMD + Shift + T : **Create Test** (Should be cursor on class name or method name)
+* Ctrl + R : **Rerun last command** (It is useful when test again)
+
+## Tutorial 6 - Service Layer
+
+### What's new?
+
+- [x] Add BankService class
+- [x] Add BankServiceTest class
+- [x] Add [Mockk - mocking library for Kotlin](https://mockk.io/)
+
+### What's in the tutorial
+
+- Add Mockk to mock a component in other layer.
+- Set `relaxed = true` when calling mockk to prevent occurring errors cause mockk doens't know what should be returned.
+    - If specific return value is needed, we can use stub, but other cases just using relaxed mock
+      ```
+      private val dataSource: BankDataSource = mockk(relaxed = true)
+      ```
+
+## Tutorial 7 - Web Layer
+
+### What's new?
+
+- [x] Add BankController class
+- [x] Add BankControllerTest class
+
+### What's in the tutorial
+
+* `@RequestMapping` annotation makes route for the application.
+* `@GetMapping` annotation makes a function to work as a REST GET method.
+* `@SpringBootTest` annotation is needed to test a controller, it will set up the application context.
+  ```Kotlin
+  @SpringBootTest
+  internal class BankControllerTest
+  ```
+* `MockMvc` does mocking http request, so it works as a request provider.
+* `@Autowired` annotation matches beans from Spring container to the target variable automatically.
+* But `@AutoConfigureMockMvc` annotation should be applied to the class
+  ```Kotlin
+  @SpringBootTest
+  @AutoConfigureMockMvc
+  internal class BankControllerTest {
+
+      @Autowired
+      lateinit var mockMvc: MockMvc
+  ```
+
+### Tips
+
+- [Kotlin] `lateinit` keyword initialize a variable after instance created, so it accelerate the application's boot
+  process.
 
 ## Tutorial 8 - GET Single Bank
 
